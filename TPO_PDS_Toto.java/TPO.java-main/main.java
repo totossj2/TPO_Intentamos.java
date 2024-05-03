@@ -29,8 +29,8 @@ public class main {
         controladorMateria.agregarMateria(programacionII);
         controladorMateria.agregarMateria(programacionIII);
         controladorMateria.agregarMateria(calculoI);
-        ControladorCursos controladorCursos = new ControladorCursos();
-        ControladorAlumno controladorAlumno = new ControladorAlumno();
+        ControladorCursos controladorCursos = ControladorCursos.getInstance();
+        ControladorAlumno controladorAlumno = ControladorAlumno.getInstance();
 
         controladorAlumno.agregarAlumno(alumno1);
         controladorAlumno.agregarAlumno(alumno2);

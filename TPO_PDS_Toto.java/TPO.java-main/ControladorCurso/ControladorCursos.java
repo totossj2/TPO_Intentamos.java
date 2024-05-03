@@ -45,6 +45,7 @@ public class ControladorCursos {
     }
 
     private Curso curso;
+
     private ControladorCursos controladorCursos;
 
     public List<Integer> obtenerCursoXMateria(int idMateria) {

@@ -1,15 +1,25 @@
 package ControladorCarrera;
 
+import ControladorCurso.ControladorCursos;
 import ControladorMateria.ControladorMateria;
 
 public class ControladorCarrera {
 
+    private ControladorMateria controladorMateria = ControladorMateria.getInstance();
+    private static ControladorCarrera instance;
+
+    private ControladorCarrera() {
+    }
+
+    public static ControladorCarrera getInstance() {
+        if (instance == null) {
+            instance = new ControladorCarrera();
+        }
+        return instance;
+    }
+
     private Carrera carrera;
 
-    ControladorMateria controladorMateria = new ControladorMateria();
-
-    public ControladorCarrera() {
-    }
 
     public int getIdMateria() {
         return controladorMateria.getMateria();
