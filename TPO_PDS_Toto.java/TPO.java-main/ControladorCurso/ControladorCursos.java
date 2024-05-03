@@ -19,9 +19,6 @@ public class ControladorCursos {
 
     private List<Curso> listaCursos = new ArrayList<Curso>();
 
-    public void asignarDocente(Docente docente) {
-        // TODO implement here
-    }
 
     public int getIdMateria(int idCurso) {
         for (Curso curso : listaCursos) {
@@ -30,10 +27,6 @@ public class ControladorCursos {
             }
         }
         return -1;
-    }
-
-    public void getCronogramaSemanal() {
-        // TODO implement here
     }
 
     public void addCurso(Curso curso) {
@@ -59,4 +52,19 @@ public class ControladorCursos {
         }
         return cursos_materia;
     }
+
+    public void getCronogramaSemanal() {
+    }
+
+    public void asignarDocente(Curso curso, int legajo) {
+        for (Curso cursos : listaCursos) {
+            if (cursos == curso) {
+                curso.setLegajoDocente(legajo);
+            }
+        }
+
+    }
+
+
+
 }

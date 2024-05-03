@@ -32,9 +32,12 @@ public class Materia {
 
     private float arancel;
 
-
     public int getIdMateria() {
         return idMateria;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public void setIdMateria(int idMateria) {
@@ -50,15 +53,18 @@ public class Materia {
     }
 
     public String getCorrelativaAnterior(){
-        return correlativaAnterior.nombre;
+        if (correlativaAnterior == null){
+            return "No tiene correlativas anteriores";
+        }else{
+            return correlativaAnterior.nombre;
+        }
     }
-
 
     public void setCorrelativaAnteriores(Materia anterior){
         correlativaAnterior = (anterior);
     }
 
-    public void setCorrelativaAnteriores(String posterior){
+    public void setCorrelativaPosteriores(String posterior){
         correlativaPosterior = (posterior);
     }
 

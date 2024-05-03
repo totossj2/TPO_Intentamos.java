@@ -37,8 +37,7 @@ public class ControladorInscripciones {
         int idMateria = controladorCursos.getIdMateria(idCurso);
 
         if (checkCorrelativas(idMateria, legajo) != null) {
-            System.out.println("No cumple con las correlativas");
-            //System.out.println(controladorMateria.getCorrelativasAnteriores(idMateria));
+            System.out.println("No es posible inscribirse a esta materia.");
             return;
         }
         if (!esFechaValida()) {
@@ -51,37 +50,26 @@ public class ControladorInscripciones {
             return;
         }
 
-        //verCursos(idMateria); // solo para ver si funciona
-        System.out.println("Inscripcion exitosa");
-        // falta q pago, q se aumente la carga horaria en cuatrimestre y q se agregue la materia a la lista de materias  del alumno
-
-        float horasAcumuladas = controladorMateria.getHorasAcumuladas(idMateria);
-        controladorAlumno.setHorasAcumuladas(legajo, horasAcumuladas);
+        float horasMateria = controladorMateria.getCargaHoraria(idMateria);
+        controladorAlumno.setHorasAcumuladas(legajo, horasMateria);
         controladorAlumno.agregarCursada(legajo, idMateria);
-    }
 
-    /**public void verCursos(int materiaID) {
-        List<Integer> cursos = controladorMateria.getCursosAsignados(materiaID);
-        for (int curso : cursos) {
-            System.out.println(curso);
-        }
-    }**/
+        System.out.println("Te inscribiste a la materia: " + controladorMateria.getNombreMateria(idMateria));
+    }
 
     public String checkCorrelativas(int idMateria, int idAlumno) {
         // buscas las materias aprobadas del alumno x y las correlativas de la materia q quiere inscribirse
 
-
         List <String> materiasAprobadas = controladorAlumno.getMateriasAprobadas(idAlumno);
-        String correlativa = controladorMateria.getCorrelativasAnteriores(idMateria);
+        String correlativa = controladorMateria.getCorrelativasAnteriores(idMateria); // No tiene correlativas
 
-
-        if (materiasAprobadas.contains(correlativa)) {
-            return null;
+        if (!materiasAprobadas.contains(correlativa) && correlativa != "No tiene correlativas anteriores") {
+            return ("Debes la materia: "+ correlativa);
         } else {
-            System.out.println("Debes: "+ correlativa);
-            return correlativa;
+            return null;
         }
     }
+
     public boolean esFechaValida(){
         fechaActual = LocalDate.now();
         LocalDate fechaLimite = LocalDate.of(2024, 5, 11);
@@ -94,7 +82,7 @@ public class ControladorInscripciones {
 
     public boolean controlarCargaHorariaXLegajo(int legajo) {
         float horasAcumuladas = controladorAlumno.getHorasAcumuladas(legajo); // Cuando hagamos Inscribirse, hay q aumentar las horas en cuatrimestre con cuatrimeste.sumarHoras();
-        float HorasMaximas = 150;//controladorCarrera.getCargaHorariamaxima();
+        float HorasMaximas = 80;//controladorCarrera.getCargaHorariamaxima();
         if (horasAcumuladas > HorasMaximas) {
             return false;
         } else {

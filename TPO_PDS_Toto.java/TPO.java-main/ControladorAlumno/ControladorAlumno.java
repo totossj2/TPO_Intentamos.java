@@ -1,15 +1,16 @@
 package ControladorAlumno;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ControladorAlumno {
 
     private static ControladorAlumno instance;
+
     private List<Alumno> listaAlumnos = new ArrayList<Alumno>();
 
     private ControladorAlumno() {
-        // private constructor
     }
 
     public static ControladorAlumno getInstance() {
@@ -21,10 +22,6 @@ public class ControladorAlumno {
 
     public void agregarAlumno(Alumno alumno){
         listaAlumnos.add(alumno);
-    }
-
-    public List<Alumno> getListaAlumnos() {
-        return listaAlumnos;
     }
 
     public List<String> getMateriasAprobadas(int legajo) {
@@ -61,8 +58,7 @@ public class ControladorAlumno {
     public float getHorasAcumuladas(int legajo){
         for (Alumno alumno : listaAlumnos) {
             if (alumno.getLegajo() == legajo) {
-                System.out.println(alumno.getHorasAcumuladas());
-                return 0;
+                return alumno.getHorasAcumuladas();
             }
         }
         System.out.println("No se encontró al alumno con el ID proporcionado");
@@ -79,5 +75,14 @@ public class ControladorAlumno {
         System.out.println("No se encontró al alumno con el ID proporcionado");
     } // cuando se inscribe a una materia, se agrega a la lista de materias inscriptas del alumno
 
-
+    public Float montoPagar(int legajo) {
+        for (Alumno alumno : listaAlumnos) {
+            if (alumno.getLegajo() == legajo) {
+                float monto = alumno.getArancel() * alumno.getListaMateriasInscriptas().size();
+                return monto;
+            }
+        }
+        System.out.println("No se encontró al alumno con el ID proporcionado");
+        return null;
+    }
 }

@@ -1,11 +1,11 @@
 package ControladorCarrera;
 
-import ControladorCurso.ControladorCursos;
 import ControladorMateria.ControladorMateria;
 
 public class ControladorCarrera {
 
     private ControladorMateria controladorMateria = ControladorMateria.getInstance();
+
     private static ControladorCarrera instance;
 
     private ControladorCarrera() {
@@ -19,7 +19,6 @@ public class ControladorCarrera {
     }
 
     private Carrera carrera;
-
 
     public int getIdMateria() {
         return controladorMateria.getMateria();

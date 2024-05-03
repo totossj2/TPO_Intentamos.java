@@ -39,6 +39,14 @@ public class ControladorMateria {
             }
         }
         System.out.println("No tiene correlativas anteriores");
+        return "No tiene correlativas anteriores";
+    }
+    public String getNombreMateria(int idMateria){
+        for (Materia materia : listaMaterias){
+            if (materia.getIdMateria() == idMateria){ // te encuentra la materia de la q queres ver las correlativas
+                return materia.getNombre();
+            }
+        }
         return null;
     }
 
@@ -46,7 +54,7 @@ public class ControladorMateria {
         return materia.getIdMateria();
     }
 
-    public float getHorasAcumuladas(int idMateria){
+    public float getCargaHoraria(int idMateria){
         for (Materia materia : listaMaterias){
             if (materia.getIdMateria() == idMateria){ // te encuentra la materia de la q queres ver las correlativas
                 return materia.getCargaHoraria();

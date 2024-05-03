@@ -15,8 +15,4 @@ public abstract class Informe {
     private int aulaAsiganada;
 
 
-    /**private void generarInforme(Curso curso) {
-        // TODO implement here
-    }**/
-
 }
