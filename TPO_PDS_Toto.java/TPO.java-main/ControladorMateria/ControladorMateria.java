@@ -7,14 +7,22 @@ import java.util.*;
 
 public class ControladorMateria {
 
-    public ControladorMateria() {
+    private static ControladorMateria instance;
+    ControladorCursos controladorCurso;
+    private List<Materia> listaMaterias = new ArrayList<Materia>();
+    private Materia materia;
+
+    private ControladorMateria() {
+        this.controladorCurso = ControladorCursos.getInstance();
     }
 
-    private ControladorCursos controladorCurso;
+    public static ControladorMateria getInstance() {
+        if (instance == null) {
+            instance = new ControladorMateria();
+        }
+        return instance;
+    }
 
-    private List<Materia> listaMaterias = new ArrayList<Materia>();
-
-    private Materia materia;
 
     //public List<Integer> getCursosAsignados(int materiaID){
     //    return controladorCurso.obtenerCursoXMateria(materiaID);

@@ -3,7 +3,7 @@ package ControladorCarrera;
 import java.util.*;
 
 public class Carrera {
-    ControladorCarrera controladorCarrera = new ControladorCarrera();
+    ControladorCarrera controladorCarrera = ControladorCarrera.getInstance();
 
     public Carrera(String nombre, int duracion, float cargaHorariaMaxima) {
         this.nombre = nombre;

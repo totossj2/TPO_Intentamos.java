@@ -10,42 +10,47 @@ import java.util.List;
 
 public class ControladorInscripciones {
 
-    public ControladorInscripciones() {
-    }
-
+    private static ControladorInscripciones instance;
     private Inscripcion inscripcion;
-
     private Cuatrimestre cuatrimestre;
-
     private LocalDate fechaActual;
 
-    ControladorMateria controladorMateria = new ControladorMateria();
-    ControladorCarrera controladorCarrera = new ControladorCarrera();
-    ControladorAlumno controladorAlumno = new ControladorAlumno();
-    ControladorCursos controladorCursos = new ControladorCursos();
+    ControladorMateria controladorMateria;
+    ControladorCarrera controladorCarrera;
+    ControladorAlumno controladorAlumno;
+    ControladorCursos controladorCursos;
 
+    private ControladorInscripciones() {
+        controladorMateria = ControladorMateria.getInstance();
+        controladorCursos = ControladorCursos.getInstance();
+        controladorAlumno = ControladorAlumno.getInstance(); // Uncomment this line if ControladorAlumno is a Singleton
+        controladorCarrera = ControladorCarrera.getInstance(); // Uncomment this line if ControladorCarrera is a Singleton
+    }
+
+    public static ControladorInscripciones getInstance() {
+        if (instance == null) {
+            instance = new ControladorInscripciones();
+        }
+        return instance;
+    }
 
     public void inscribirse(int legajo, int idCurso){
         int idMateria = controladorCursos.getIdMateria(idCurso);
-        System.out.println("entro al metodo");
 
         if (checkCorrelativas(idMateria, legajo) != null) {
             System.out.println("No cumple con las correlativas"); // aca
             //System.out.println(controladorMateria.getCorrelativasAnteriores(idMateria));
             return;
         }
-        System.out.println("Pasó las correlativas");
         if (!esFechaValida()) {
             System.out.println("No es fecha valida");
             return;
         }
-        System.out.println("Pasó la fecha valida");
 
         if (!controlarCargaHorariaXCurso()) {
             System.out.println("No cumple con la carga horaria");
             return;
         }
-        System.out.println("Pasó la carga horaria");
 
         //verCursos(idMateria); // solo para ver si funciona
         System.out.println("Inscripcion exitosa");

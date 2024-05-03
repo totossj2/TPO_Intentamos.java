@@ -1,25 +1,34 @@
 package ControladorAlumno;
 
-import ControladorMateria.ControladorMateria;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ControladorAlumno {
 
+    private static ControladorAlumno instance;
     private List<Alumno> listaAlumnos = new ArrayList<Alumno>();
 
+    private ControladorAlumno() {
+        // private constructor
+    }
+
+    public static ControladorAlumno getInstance() {
+        if (instance == null) {
+            instance = new ControladorAlumno();
+        }
+        return instance;
+    }
+
     public void agregarAlumno(Alumno alumno){
-        listaAlumnos.add(alumno);}
+        listaAlumnos.add(alumno);
+    }
 
     public List<Alumno> getListaAlumnos() {
         return listaAlumnos;
     }
 
     public List<String> getMateriasAprobadas(int legajo) {
-        System.out.println("Tamaño de listaAlumnos: " + listaAlumnos.size());
-
         for (Alumno alumno : listaAlumnos) {
-            System.out.println("ALumno "+alumno.getLegajo());
             if (alumno.getLegajo() == legajo) {
                 return alumno.getListaMateriasAprobadas();
             }

@@ -24,7 +24,7 @@ public class main {
         Materia calculoI = new Materia(4, "Calculo I", 35, null, null);
 
 
-        ControladorMateria controladorMateria = new ControladorMateria();
+        ControladorMateria controladorMateria = ControladorMateria.getInstance();
         controladorMateria.agregarMateria(programacionI);
         controladorMateria.agregarMateria(programacionII);
         controladorMateria.agregarMateria(programacionIII);
@@ -45,7 +45,7 @@ public class main {
 
         alumno1.agregarMateriaAprobada("Programacion I");
 
-        ControladorInscripciones controladorInscripciones = new ControladorInscripciones();
+        ControladorInscripciones controladorInscripciones = ControladorInscripciones.getInstance();
         controladorInscripciones.inscribirse(1, 2);
         controladorInscripciones.inscribirse(1, 3);
 

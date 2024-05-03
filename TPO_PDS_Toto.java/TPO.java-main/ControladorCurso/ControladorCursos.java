@@ -5,7 +5,16 @@ import java.util.*;
 
 public class ControladorCursos {
 
-    public ControladorCursos() {
+    private static ControladorCursos instance;
+
+    private ControladorCursos() {
+    }
+
+    public static ControladorCursos getInstance() {
+        if (instance == null) {
+            instance = new ControladorCursos();
+        }
+        return instance;
     }
 
     private List<Curso> listaCursos = new ArrayList<Curso>();
