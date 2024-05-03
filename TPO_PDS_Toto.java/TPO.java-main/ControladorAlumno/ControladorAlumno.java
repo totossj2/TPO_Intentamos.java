@@ -46,4 +46,38 @@ public class ControladorAlumno {
         }
         System.out.println("No se encontró al alumno con el ID proporcionado");
     }
+
+
+    public void setHorasAcumuladas(int legajo, float horas){
+        for (Alumno alumno : listaAlumnos) {
+            if (alumno.getLegajo() == legajo) {
+                alumno.setHorasAcumuladas(horas);
+                return;
+            }
+        }
+        System.out.println("No se encontró al alumno con el ID proporcionado");
+    }
+
+    public float getHorasAcumuladas(int legajo){
+        for (Alumno alumno : listaAlumnos) {
+            if (alumno.getLegajo() == legajo) {
+                System.out.println(alumno.getHorasAcumuladas());
+                return 0;
+            }
+        }
+        System.out.println("No se encontró al alumno con el ID proporcionado");
+        return 0;
+    }
+
+    public void agregarCursada(int legajo, int materiaId) {
+        for (Alumno alumno : listaAlumnos) {
+            if (alumno.getLegajo() == legajo) {
+                alumno.agregarCursada(materiaId);
+                return;
+            }
+        }
+        System.out.println("No se encontró al alumno con el ID proporcionado");
+    } // cuando se inscribe a una materia, se agrega a la lista de materias inscriptas del alumno
+
+
 }

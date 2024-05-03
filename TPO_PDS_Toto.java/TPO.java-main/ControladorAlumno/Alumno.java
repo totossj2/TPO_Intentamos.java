@@ -16,6 +16,21 @@ public class Alumno {
     private String email;
     private int Dni;
 
+    private List<Integer> listaMateriasInscriptas = new ArrayList<Integer>();
+
+    private float horasAcumuladas;
+    private float arancel = 250000;
+
+    public void setHorasAcumuladas(float horas){
+        this.horasAcumuladas += horas;
+    }
+
+    public float getHorasAcumuladas(){
+        return horasAcumuladas;
+    }
+    public void agregarCursada(int materiaId) {
+        listaMateriasInscriptas.add(materiaId);
+    }
 
     public int getLegajo() {
         return legajo;
@@ -29,9 +44,7 @@ public class Alumno {
         this.nombre = nombre;
     }
 
-    public void agregarMateriaAprobada(String nombreMateria) {
-        listaMateriasAprobadas.add(nombreMateria);
-    }
+
     public List<String> getListaMateriasAprobadas() {
         return listaMateriasAprobadas;
     }

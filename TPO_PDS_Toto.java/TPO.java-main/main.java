@@ -1,3 +1,4 @@
+import ControladorCarrera.Carrera;
 import ControladorCurso.ControladorCursos;
 import ControladorCurso.Curso;
 import ControladorAlumno.Alumno;
@@ -18,10 +19,12 @@ public class main {
         Alumno alumno1 = new Alumno(1,"Juan", "juanpedro@gmail.com", 452311314);
         Alumno alumno2 = new Alumno(2,"Pedro", "pedro@gmail.com",452311222);
 
-        Materia programacionI = new Materia(1, "Programacio I", 40, "Programacion II", null);
+        Materia programacionI = new Materia(1, "Programacion I", 40, "Programacion II", null);
         Materia programacionII = new Materia(2, "Programacion II", 42,"Programacion III", programacionI);
         Materia programacionIII = new Materia(3, "Programacion III", 45, null, programacionII);
         Materia calculoI = new Materia(4, "Calculo I", 35, null, null);
+
+        Carrera carrera = new Carrera("Ingenieria en Sistemas", 5, 120);
 
 
         ControladorMateria controladorMateria = ControladorMateria.getInstance();
@@ -43,7 +46,7 @@ public class main {
         Curso curso3 = new Curso(3, 3);
         controladorCursos.addCurso(curso3);
 
-        alumno1.agregarMateriaAprobada("Programacion I");
+        controladorAlumno.aprobarMateria(1, "Programacion I");
 
         ControladorInscripciones controladorInscripciones = ControladorInscripciones.getInstance();
         controladorInscripciones.inscribirse(1, 2);
